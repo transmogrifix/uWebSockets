@@ -33,6 +33,8 @@ target_compile_options(${PROJECT_NAME}ObjLib PRIVATE "$<$<CONFIG:RELWITHDEBINFO>
 find_package(OpenSSL REQUIRED)
 target_link_libraries(${PROJECT_NAME}ObjLib OpenSSL::SSL)
 
-target_link_libraries(${PROJECT_NAME}ObjLib uv_a)
-target_include_directories(${PROJECT_NAME}ObjLib PUBLIC ../libuv/include)
+if(WIN32)
+    target_link_libraries(${PROJECT_NAME}ObjLib uv_a)
+    target_include_directories(${PROJECT_NAME}ObjLib PUBLIC ../libuv/include)
+endif()
 
